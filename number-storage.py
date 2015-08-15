@@ -84,7 +84,7 @@ def show_file_size():
 	onlyfiles = [ f for f in listdir(mypath) if isfile(join(mypath,f)) ]
 	for fil in onlyfiles:
 		statinfo = os.stat(fil)
-		print 'name '+str(fil)
+		print 'name: '+str(fil)
 		print 'size: '+str(statinfo.st_size)
 		print ' '
 	print onlyfiles
