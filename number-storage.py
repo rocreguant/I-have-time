@@ -41,6 +41,7 @@ def save_json(data):
 	f.close()
 	return True
 
+
 #saving numbers on csv
 def save_csv(data):
 	with open('csv.csv', 'w') as csvfile:
@@ -60,12 +61,10 @@ def save_tsv(data):
 	return True
 	
 	
-
 #save data in sqlite
 def save_sqlite(data):
 	conn = sqlite3.connect('data.sqlite3')
 	cur = conn.cursor()
-
 	cur.execute('DROP TABLE IF EXISTS Data ')
 	cur.execute('CREATE TABLE Data (Col_A REAL, Col_B REAL, Col_C REAL, Col_D REAL)')
 	for el in data:
@@ -73,10 +72,12 @@ def save_sqlite(data):
 	conn.commit()
 	conn.close()
 
+
 #save the data in a hdf file
 def save_hdf(data):
 	h = h5py.File('data.hdf5', 'w')
 	dset = h.create_dataset('data', data=data)
+
 
 #check the file size
 def show_file_size():
@@ -88,6 +89,7 @@ def show_file_size():
 		print 'size: '+str(statinfo.st_size)
 		print ' '
 	print onlyfiles
+
 
 ##############################
 #
