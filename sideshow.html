@@ -1,0 +1,57 @@
+      <script type = "text/javascript">
+          function displayNextImage() {
+              if(pause == 0){
+		          x = (x === images.length - 1) ? 0 : x + 1;
+	              document.getElementById("img").src = images[x];
+	              document.getElementsByClassName("name_id")[0].innerHTML = names[x];
+	              desc = document.getElementById('id_desc');
+	              desc.textContent = descriptions[x];
+	          }
+          }
+          function nextImage() {
+		          x = (x === images.length - 1) ? 0 : x + 1;
+	              document.getElementById("img").src = images[x];
+	              document.getElementsByClassName("name_id")[0].innerHTML = names[x];
+	              desc = document.getElementById('id_desc');
+	              desc.textContent = descriptions[x];
+          }
+          function displayPreviousImage() {
+              x = (x <= 0) ? images.length - 1 : x - 1;
+              document.getElementById("img").src = images[x];
+          }
+          function startTimer() {
+              setInterval(displayNextImage, 1500);
+          }
+          function pauseImage() {
+          	  if(pause == 0){
+	              pause = 1
+	              document.getElementById("button1").value="resume"; 
+	          }
+	          else{
+	          	  pause = 0
+	          	  document.getElementById("button1").value="pause"; 
+	          }
+          }
+console.warn('Hi!');
+          var images = [], x = -1;
+          var pause = 0
+          var names = []
+          var descriptions = []
+          images[0] = "http://rocreguant.com/wp-content/uploads/2015/08/data-format-comparsion-plot.png";
+          images[1] = "http://rocreguant.com/wp-content/uploads/2015/01/main-qimg-97e49d176bd84437847ee2bbf5909646.png";
+          images[2] = "http://rocreguant.com/wp-content/uploads/2012/04/QR-code.jpg";
+          names[0] = "data-format-comparsion-plot"
+          names[1] = "main-qimg-97e49d176bd84437847ee2bbf5909646"
+          names[2] = "QR-code"
+          descriptions[0] = "Gráfico den el que se muestra los valores obtenidos de los formatos CSV, TSV, JSON, SQLite y HDF5"
+          descriptions[1] = "Grafico raro que tengo en una de las entradas en mi blog"
+          descriptions[2] = "Código QR con todas las modificaciones posibles hechas. De uno de mis primeros posts"
+          startTimer()
+      </script>
+       <button type="button" onclick="displayPreviousImage()">Previous</button>
+       <input onclick="pauseImage()" type="button" value="Pause" id="button1" />
+       <button type="button" onclick="nextImage()">Next</button>
+       
+       <h3><span class="name_id">QR-code</span></h3>
+<p><img id="img" class="alignleft size-medium wp-image-1704" src="http://rocreguant.com/wp-content/uploads/2012/04/QR-code.jpg" height="300" width="300"> <span id = "id_desc" style="font-weight: 400;">Código QR con todas las modificaciones posibles hechas. De uno de mis primeros posts
+</span>
