@@ -13,7 +13,7 @@ __DATASET_FOLDER__ 		= '/home/roc/workspace/I-have-time/founds-dataset/'
 __DATASET_FILES__ 		= [ '*CXBorsaDividends','*CXFonsTresorLlargTermini',
                           '*CXMultiactiu30','*CXMultiactiu100', '*CXRendaFixaInternacional']
 __DATASET_EXTENSION__ = '.csv'
-__SAMPLE_LENGTH__		= 50
+__SAMPLE_LENGTH__		= 10
 
 for _file in __DATASET_FILES__:
   f = open(__DATASET_FOLDER__+_file+__DATASET_EXTENSION__, 'r')
@@ -32,20 +32,22 @@ for _file in __DATASET_FILES__:
   X = X[::-1]
   Y = Y[::-1]
   y = Y
-  Y = Y[len(Y)-50:len(Y)-5] #
+  Y = Y[len(Y)-__SAMPLE_LENGTH__:len(Y)-6] #
 
-  kernel = GPy.kern.RBF(input_dim=1, lengthscale=5)
-  m = GPy.models.GPRegression(np.array(range(len(Y-5)))[:, np.newaxis], Y[0:len(Y-5), np.newaxis], kernel)
+  kernel = GPy.kern.RBF(input_dim=1)#, lengthscale=5)
+  m = GPy.models.GPRegression(np.array(range(len(Y-6)))[:, np.newaxis], Y[0:len(Y-6), np.newaxis], kernel)
   m.optimize()
-  m.plot()
-  matplotlib.pylab.show(block=True)
+  #m.plot()
+  #matplotlib.pylab.show(block=True)
   
-  aux = np.ndarray(4)
-  aux[0] = len(Y-5)
-  aux[1] = len(Y-5)+1
-  aux[2] = len(Y-5)+2
-  aux[3] = len(Y-5)+3
+  aux = np.ndarray(5)
+  aux[0] = len(Y-6)
+  aux[1] = len(Y-6)+1
+  aux[2] = len(Y-6)+2
+  aux[3] = len(Y-6)+3
+  aux[4] = len(Y-6)+4
   prediction = m.predict(np.array(aux[:, np.newaxis])) 
+  #print 'aaa',np.array(aux[:, np.newaxis])
   #print prediction
   
   totalvar = 0
@@ -57,4 +59,5 @@ for _file in __DATASET_FILES__:
     print prediction[0][i],'--', y[len(y)-5-1+i]
 #  print Y[len(Y)-5:]#[len(Y-6):len(Y)-1]
     #varianceprint prediction[1][i]
-  exit()
+  #print 'result: ',prediction[0][len(prediction[0])-1]-prediction[0][0], ' vs ', Y[4]-Y[0]
+
