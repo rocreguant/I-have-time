@@ -8,4 +8,6 @@ Here I'll place a small definition for each file/project
 
 * sideshow.html => Is a JavaScript piece of code, that shows a title, picture and description in a sideshow format. With automatic progression, pause, and manual iteration.
 
-* founds-analysis.py => With this script I try to predict future values on some test founds using Gaussian Process (GP) and Heteroscedastic GP.
+* founds-analysis.py => With this script I try to predict future values on some test founds using Gaussian Process (GP) and Heteroscedastic GP. Not fully working for the testing set. It's good but not enough.
+
+* tendence-analysis.py => is the follow up of founds-analysis.py. This time I simply consider that if yesterday increased today too, and the same for decrease.
