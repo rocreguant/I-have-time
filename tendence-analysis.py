@@ -33,12 +33,14 @@ for _file in __DATASET_FILES__:
   
   l = []
   count = 0
-  
+  money = 1000
+  value = 0
   for i in range(len(Y)):
     try:
       b = Y[i] <= Y[i+1]
       if b:
         count +=1
+        # value = Y[i+2] guess is correct
       else:
         l.append(count)
         count = 0
